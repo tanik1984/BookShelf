@@ -3,14 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookShelf"
         xmlns:viewModels="clr-namespace:BookShelf.ViewModels"
         mc:Ignorable="d"
-        Title="Book shelf" 
-        Height="600" 
+        Title="Book shelf"
+        Height="600"
         Width="1000"
         d:DataContext="{d:DesignInstance viewModels:IMainWindowViewModel}">
-    <Grid>
-        <DataGrid ItemsSource="{Binding BookViewModels}"/>
+    <Grid Background="Green">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal">
+            <Button Content="Add"
+                    Width="80" />
+            <Button Content="Edit"
+                    Width="80"
+                    Command="{Binding EditButtonCommand}" />
+            <Button Content="Delete"
+                    Width="80"
+                    Command="{Binding DeleteButtonCommand}" />
+        </StackPanel>
+
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Books}"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedBook}" />
     </Grid>
 </Window>

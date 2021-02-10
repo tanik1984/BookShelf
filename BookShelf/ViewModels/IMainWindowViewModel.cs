@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace BookShelf.ViewModels
 {
     public interface IMainWindowViewModel
     {
-        IEnumerable<IBookViewModel> BookViewModels { get; }
+        ObservableCollection<IBookViewModel> Books { get; }
+        IBookViewModel SelectedBook { get; set; }
+
+        RelayCommand DeleteButtonCommand { get; }
+        RelayCommand EditButtonCommand { get; }
     }
 }
